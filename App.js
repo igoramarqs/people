@@ -1,24 +1,24 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import Header from './src/components/Header';
+
+import axios from 'axios';
 
 export default class App extends React.Component {
 
   renderList() {
-    const names = [
-      'Igor',
-      'Brunna',
-      'Késia',
-      'John Doe'
-    ];
-
-    const textElements = names.map(name => {
+    /*const textElements = names.map(name => {
       return <Text key={name}>{name}</Text>
+    })*/
+
+    axios.get('https://randomuser.me/api/?nat=br&results=5').then(response => {
+      const {results} = response.data;
+      const names = results.map(people => people.name.first);
+      console.log(names);
     })
 
-    return textElements;
+    //return textElements;
   }  
 
   render() {
