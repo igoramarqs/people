@@ -9,7 +9,7 @@ const Header = (props) => (
 
 const style = StyleSheet.create({
     container: {
-        marginTop: 50,
+        marginTop: 30,
         backgroundColor: '#7c5a8a',
         //textAlign: 'center'
         alignItems: 'center',
