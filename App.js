@@ -1,13 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
 import Header from './src/components/Header';
 import PeopleList from './src/components/PeopleList';
 
 import axios from 'axios';
-
-//functional component == 
-// const meuComponente = (props) => <Text>Olá</Text>
 
 export default class App extends React.Component {
 
@@ -22,7 +19,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount(){
-    axios.get('https://randomuser.me/api/?nat=br&results=5').then(response => {
+    axios.get('https://randomuser.me/api/?nat=BR&results=5').then(response => {
       const {results} = response.data;   
       this.setState({
         peoples: results
