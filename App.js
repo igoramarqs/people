@@ -1,31 +1,49 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 import Header from './src/components/Header';
 
 import axios from 'axios';
 
+//functional component == 
+// const meuComponente = (props) => <Text>Olá</Text>
+
 export default class App extends React.Component {
 
-  renderList() {
-    /*const textElements = names.map(name => {
-      return <Text key={name}>{name}</Text>
-    })*/
+  constructor(props){
+    super(props);
 
+    this.state = {
+      peoples: [
+
+      ]
+    };
+  }
+
+  componentDidMount(){
     axios.get('https://randomuser.me/api/?nat=br&results=5').then(response => {
-      const {results} = response.data;
-      const names = results.map(people => people.name.first);
-      console.log(names);
-    })
+      const {results} = response.data;   
+      this.setState({
+        peoples: results
+      });
+    })      
+  }
 
-    //return textElements;
+  renderList() {
+
+    const textElements = this.state.peoples.map(people => {
+      const { first } = people.name;
+      return <Text key={ first }>{ first }</Text>;
+    });
+
+    return textElements;
   }  
 
   render() {
     return(
       <View>
         <Header title="Pessoas!"/>
-        { this.renderList() }
+        {this.renderList()}
       </View>
     );
   }
